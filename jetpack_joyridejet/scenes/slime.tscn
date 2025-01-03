@@ -391,5 +391,5 @@ shape = SubResource("CircleShape2D_a3gkr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_4u1c6")
-animation = &"slime1"
-frame_progress = 0.8536
+animation = &"slime3"
+frame_progress = 0.557686

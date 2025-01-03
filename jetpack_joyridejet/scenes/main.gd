@@ -16,7 +16,7 @@ func spawn_slime(range):
 	if range <= 2:
 		spawn_slime_amount(100)
 		spawn_slime_amount()
-	elif range <= 9: 
+	elif range <= 7: 
 		spawn_slime_amount()
 	else:
 		spawn_slime_amount(100)
