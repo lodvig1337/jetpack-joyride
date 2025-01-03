@@ -75,3 +75,6 @@ shape = SubResource("CircleShape2D_jmfti")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_t4psu")
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

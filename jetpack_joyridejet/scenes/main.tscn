@@ -11,9 +11,9 @@ size = Vector2(1172.5, 31)
 script = ExtResource("1_7g5d6")
 
 [node name="player" parent="." instance=ExtResource("1_3andj")]
-position = Vector2(170, 305)
+position = Vector2(268, 301)
 
-[node name="floor" type="StaticBody2D" parent="."]
+[node name="floor" type="StaticBody2D" parent="." groups=["floor"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
 position = Vector2(579, 654)

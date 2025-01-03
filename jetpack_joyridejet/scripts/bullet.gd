@@ -24,3 +24,13 @@ func left_right(dir):
 	elif dir == "down":
 		direction = 0
 		
+
+
+func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if area.is_in_group("slime"):
+		queue_free()
+		area.get_parent().death_animation()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("floor"):
+		queue_free()
