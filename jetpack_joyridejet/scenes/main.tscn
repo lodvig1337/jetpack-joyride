@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://di2k7aqhtmi6l"]
+
+[ext_resource type="PackedScene" uid="uid://b4bb0qjkllfri" path="res://scenes/player.tscn" id="1_3andj"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_7g5d6"]
+[ext_resource type="PackedScene" uid="uid://bgc3la55xhpf2" path="res://scenes/parallax_background.tscn" id="2_gxy11"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3meti"]
+size = Vector2(1172.5, 31)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_7g5d6")
+
+[node name="player" parent="." instance=ExtResource("1_3andj")]
+position = Vector2(576, 324)
+
+[node name="floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
+position = Vector2(579, 654)
+shape = SubResource("RectangleShape2D_3meti")
+
+[node name="roof" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="roof"]
+position = Vector2(575, -8)
+shape = SubResource("RectangleShape2D_3meti")
+
+[node name="background" parent="." instance=ExtResource("2_gxy11")]
+
+[node name="spawn_timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]

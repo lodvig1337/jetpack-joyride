@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://qtllh1lq3ftj"]
+
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_5x8yl"]
+[ext_resource type="Texture2D" uid="uid://qi5t060yea5h" path="res://pngs/2.png" id="1_4547x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jmfti"]
+radius = 16.0312
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wiya6"]
+atlas = ExtResource("1_4547x")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmucx"]
+atlas = ExtResource("1_4547x")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y12wp"]
+atlas = ExtResource("1_4547x")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exu55"]
+atlas = ExtResource("1_4547x")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6jwq"]
+atlas = ExtResource("1_4547x")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2apx3"]
+atlas = ExtResource("1_4547x")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sejv"]
+atlas = ExtResource("1_4547x")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t4psu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wiya6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmucx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y12wp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exu55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6jwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2apx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sejv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="bullet" type="Node2D"]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_5x8yl")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_jmfti")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_t4psu")
