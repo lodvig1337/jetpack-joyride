@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const JUMP_VELOCITY = -100
-
+"res://scenes/start_screen.tscn"
 var on_ground = false
 var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
 
@@ -10,6 +10,10 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta * 3
 		
+	if Input.is_action_just_pressed("ui_accept"):
+		if get_tree().paused:
+			get_tree().paused = false
+			get_tree().call_deferred("change_scene_to_file","res://scenes/start_screen.tscn")
 
 	# Handle jump.
 	if Input.is_action_pressed("ui_accept"):
@@ -21,10 +25,15 @@ func _physics_process(delta: float) -> void:
 			shoot_bullet("right")
 			shoot_bullet("down")
 			$bullet_timer.start()
-			
+	
+	elif get_tree().paused:
+		if $AnimatedSprite2D.get_frame() == 7:
+			$AnimatedSprite2D.visible = false
+		$AnimatedSprite2D.play("death")
+		
 	elif is_on_floor():
 		$AnimatedSprite2D.play("running")
-	
+		
 	else:
 		$AnimatedSprite2D.play("falling")
 
@@ -32,9 +41,6 @@ func _physics_process(delta: float) -> void:
 
 func shoot_bullet(direction):
 	var bullet = bullet_scene.instantiate()
-	bullet.position = $Marker2D.position
+	bullet.global_position = $Marker2D.global_position
 	bullet.left_right(direction)
-	add_child(bullet)
-
-func game_over():
-	pass
+	get_parent().add_child(bullet)

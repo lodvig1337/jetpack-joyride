@@ -607,6 +607,7 @@ animations = [{
 }]
 
 [node name="slime" type="Node2D"]
+process_mode = 3
 scale = Vector2(3, 3)
 script = ExtResource("1_qjlas")
 

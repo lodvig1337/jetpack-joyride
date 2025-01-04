@@ -18,4 +18,4 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		body.game_over()
+		body.get_parent().game_over()

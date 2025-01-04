@@ -58,3 +58,11 @@ func _on_box_spawn_timer_timeout() -> void:
 func _on_score_timer_timeout() -> void:
 	score += 10
 	$CanvasLayer/score_label.set_text(str(score))
+	
+func game_over():
+	$CanvasLayer/start_label.visible = true
+	get_tree().paused = true
+	
+	
+	
+	

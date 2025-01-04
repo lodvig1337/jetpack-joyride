@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://cb51td0k5kgtg"]
+
+[ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_0mxig"]
+[ext_resource type="PackedScene" uid="uid://bgc3la55xhpf2" path="res://scenes/parallax_background.tscn" id="2_36prt"]
+[ext_resource type="PackedScene" uid="uid://b4bb0qjkllfri" path="res://scenes/player.tscn" id="3_jasrr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wsvfm"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_8r6kx"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_pnomq"]
+font_size = 64
+
+[node name="start_screen" type="Node2D"]
+script = ExtResource("1_0mxig")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="score_label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 40.0
+offset_right = 20.0
+offset_bottom = 63.0
+grow_horizontal = 2
+text = "0"
+label_settings = SubResource("LabelSettings_wsvfm")
+
+[node name="start_label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.07
+offset_top = 308.505
+offset_right = 363.93
+offset_bottom = 396.505
+grow_horizontal = 2
+text = "Press 'space' to start"
+label_settings = SubResource("LabelSettings_8r6kx")
+
+[node name="high_score" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -189.0
+offset_top = 144.0
+offset_right = 190.0
+offset_bottom = 232.0
+grow_horizontal = 2
+text = "Highscore: 0"
+label_settings = SubResource("LabelSettings_pnomq")
+
+[node name="background" parent="." instance=ExtResource("2_36prt")]
+
+[node name="player" parent="." instance=ExtResource("3_jasrr")]
+position = Vector2(250, 300)

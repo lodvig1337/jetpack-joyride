@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed = 3
+var speed = 10
 var direction = speed/3
 
 # Called when the node enters the scene tree for the first time.
@@ -13,8 +13,6 @@ func _physics_process(delta: float) -> void:
 	position.y += speed
 	position.x = position.x + direction
 	
-	if position.y > 250:
-		queue_free()
 
 func left_right(dir):
 	if dir == "left":
@@ -34,3 +32,7 @@ func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_inde
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("floor"):
 		queue_free()
+
+
+func _on_timer_timeout() -> void:
+	queue_free()
