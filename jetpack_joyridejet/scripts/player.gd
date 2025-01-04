@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const JUMP_VELOCITY = -25
+const JUMP_VELOCITY = -100
 
 var on_ground = false
 var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
@@ -8,7 +8,7 @@ var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * delta * 3
 		
 
 	# Handle jump.
@@ -27,10 +27,7 @@ func _physics_process(delta: float) -> void:
 	
 	else:
 		$AnimatedSprite2D.play("falling")
-		
-		
-		
-		
+
 	move_and_slide()
 
 func shoot_bullet(direction):
@@ -38,3 +35,6 @@ func shoot_bullet(direction):
 	bullet.position = $Marker2D.position
 	bullet.left_right(direction)
 	add_child(bullet)
+
+func game_over():
+	pass

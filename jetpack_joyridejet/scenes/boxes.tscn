@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck4vwhcrdylwm"]
+
+[ext_resource type="Script" path="res://scripts/boxes.gd" id="1_x3s33"]
+
+[node name="boxes" type="Node2D"]
+position = Vector2(9875, 0)
+script = ExtResource("1_x3s33")
+height = 3

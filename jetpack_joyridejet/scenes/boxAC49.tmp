@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://djfa02dukvlym"]
+
+[ext_resource type="Texture2D" uid="uid://bblonokiq35vf" path="res://pngs/obstacle/1_Idle.png" id="1_7lab2"]
+
+[sub_resource type="GDScript" id="GDScript_slh0d"]
+script/source = "extends Node2D
+
+@export var obstacle: ObstacleData
+@export_group (\"bajs\")
+@export var inner_width: int
+@export var inner_height: int
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	print(obstacle.area())
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltfsj"]
+size = Vector2(22, 22)
+
+[node name="boxes" type="Node2D"]
+script = SubResource("GDScript_slh0d")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ltfsj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture_filter = 1
+texture = ExtResource("1_7lab2")
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(44, 0)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("RectangleShape2D_ltfsj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D2"]
+texture_filter = 1
+texture = ExtResource("1_7lab2")
+
+[node name="Area2D3" type="Area2D" parent="."]
+position = Vector2(88, 0)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+shape = SubResource("RectangleShape2D_ltfsj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D3"]
+texture_filter = 1
+texture = ExtResource("1_7lab2")

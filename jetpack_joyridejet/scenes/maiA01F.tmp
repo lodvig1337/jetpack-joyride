@@ -3,29 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://b4bb0qjkllfri" path="res://scenes/player.tscn" id="1_3andj"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7g5d6"]
 [ext_resource type="PackedScene" uid="uid://bgc3la55xhpf2" path="res://scenes/parallax_background.tscn" id="2_gxy11"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_j2kgt"]
-font_size = 64
+[ext_resource type="PackedScene" uid="uid://djfa02dukvlym" path="res://scenes/boxes.tscn" id="4_nh0yq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3meti"]
 size = Vector2(1172.5, 31)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_7g5d6")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="score_label" type="Label" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = 47.075
-offset_right = 20.0
-offset_bottom = 70.075
-grow_horizontal = 2
-text = "0"
-label_settings = SubResource("LabelSettings_j2kgt")
 
 [node name="player" parent="." instance=ExtResource("1_3andj")]
 position = Vector2(268, 301)
@@ -47,12 +31,7 @@ shape = SubResource("RectangleShape2D_3meti")
 [node name="spawn_timer" type="Timer" parent="."]
 autostart = true
 
-[node name="box_spawn_timer" type="Timer" parent="."]
-
-[node name="score_timer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
+[node name="obstacle" parent="." instance=ExtResource("4_nh0yq")]
+position = Vector2(579, 335)
 
 [connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
-[connection signal="timeout" from="box_spawn_timer" to="." method="_on_box_spawn_timer_timeout"]
-[connection signal="timeout" from="score_timer" to="." method="_on_score_timer_timeout"]
