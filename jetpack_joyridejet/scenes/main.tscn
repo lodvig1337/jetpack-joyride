@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://di2k7aqhtmi6l"]
 
 [ext_resource type="PackedScene" uid="uid://b4bb0qjkllfri" path="res://scenes/player.tscn" id="1_3andj"]
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_7g5d6"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_7g5d6"]
 [ext_resource type="PackedScene" uid="uid://bgc3la55xhpf2" path="res://scenes/parallax_background.tscn" id="2_gxy11"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3meti"]
