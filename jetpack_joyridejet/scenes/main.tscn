@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://di2k7aqhtmi6l"]
+[gd_scene load_steps=8 format=3 uid="uid://di2k7aqhtmi6l"]
 
 [ext_resource type="PackedScene" uid="uid://b4bb0qjkllfri" path="res://scenes/player.tscn" id="1_3andj"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7g5d6"]
 [ext_resource type="PackedScene" uid="uid://bgc3la55xhpf2" path="res://scenes/parallax_background.tscn" id="2_gxy11"]
+[ext_resource type="AudioStream" uid="uid://clikcjdd0m51y" path="res://sounds/Digital Odyssey.mp3" id="4_42pws"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j2kgt"]
 font_size = 64
@@ -71,6 +72,10 @@ autostart = true
 [node name="score_timer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="main_theme_player" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_42pws")
+playback_type = 1
 
 [connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="box_spawn_timer" to="." method="_on_box_spawn_timer_timeout"]

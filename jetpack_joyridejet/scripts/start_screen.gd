@@ -3,7 +3,8 @@ extends Node2D
 var main_scene = preload("res://scenes/main.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$CanvasLayer/high_score.set_text("Hiscore: "+str(Global.highscore))
+	$AnimatedSprite2D.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

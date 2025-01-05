@@ -32,6 +32,7 @@ func _process(delta: float) -> void:
 		queue_free()
 
 func death_animation():
+	$death_sound.play()
 	if dead:
 		return
 	if rand_value == 1 || rand_value == 6:

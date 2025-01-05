@@ -14,6 +14,7 @@ var box_scene = preload("res://scenes/boxes.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$main_theme_player.play()
 	spawn_boxes()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,6 +61,8 @@ func _on_score_timer_timeout() -> void:
 	$CanvasLayer/score_label.set_text(str(score))
 	
 func game_over():
+	if score > Global.highscore:
+		Global.highscore = score
 	$CanvasLayer/start_label.visible = true
 	get_tree().paused = true
 	

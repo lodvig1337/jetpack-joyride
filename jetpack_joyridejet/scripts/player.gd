@@ -4,6 +4,7 @@ const JUMP_VELOCITY = -100
 "res://scenes/start_screen.tscn"
 var on_ground = false
 var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
+var dead = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -29,9 +30,11 @@ func _physics_process(delta: float) -> void:
 	elif get_tree().paused:
 		if $AnimatedSprite2D.get_frame() == 7:
 			$AnimatedSprite2D.visible = false
+			death_sound()
 		$AnimatedSprite2D.play("death")
 		
 	elif is_on_floor():
+		walk_sound_func()
 		$AnimatedSprite2D.play("running")
 		
 	else:
@@ -44,3 +47,15 @@ func shoot_bullet(direction):
 	bullet.global_position = $Marker2D.global_position
 	bullet.left_right(direction)
 	get_parent().add_child(bullet)
+
+func walk_sound_func():
+	if $walk_sound_timer.is_stopped():
+		$walk_sound_timer.start()
+
+func _on_walk_sound_timer_timeout() -> void:
+	$walk_sound.play()
+
+func death_sound():
+	if not dead:
+		dead = true
+		$death.play()
