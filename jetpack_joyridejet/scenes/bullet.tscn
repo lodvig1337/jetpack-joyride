@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://qtllh1lq3ftj"]
+[gd_scene load_steps=20 format=3 uid="uid://qtllh1lq3ftj"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_5x8yl"]
 [ext_resource type="Texture2D" uid="uid://qi5t060yea5h" path="res://pngs/2.png" id="1_4547x"]
@@ -72,15 +72,41 @@ stream_0/stream = ExtResource("3_2rjpj")
 stream_1/stream = ExtResource("4_bdj2o")
 stream_2/stream = ExtResource("5_t3jbd")
 
-[node name="bullet" type="Node2D"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_voklk"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_lr1d6"]
+_data = [Vector2(0.0133333, 0.824176), 0.0, 0.0, 0, 0, Vector2(0.736842, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_86t8v"]
+curve = SubResource("Curve_lr1d6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sixo1"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 45.5
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_86t8v")
+anim_speed_max = 15.0
+
+[node name="bullet" type="Node2D" groups=["bullet"]]
 script = ExtResource("1_5x8yl")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="bullet_area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_area2D"]
 shape = SubResource("CircleShape2D_jmfti")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bullet_area2D"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_t4psu")
 
@@ -92,6 +118,19 @@ autostart = true
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_ret3w")
 
-[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_voklk")
+emitting = false
+amount = 50
+amount_ratio = 0.8
+process_material = SubResource("ParticleProcessMaterial_sixo1")
+texture = ExtResource("1_4547x")
+one_shot = true
+speed_scale = 1.55
+explosiveness = 1.0
+
+[connection signal="area_shape_entered" from="bullet_area2D" to="." method="_on_area_2d_area_shape_entered"]
+[connection signal="body_entered" from="bullet_area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]

@@ -12,7 +12,7 @@ var current_width: int = -1
 var width_array = [null,null,null,null,null]
 var height_array = [null,null,null,null,null]
 
-var speed = 300
+var speed = 300 
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 	if position.x < -300:
 		queue_free()
 		
-	position.x -= delta * speed
+	position.x -= delta * speed * Global.increasing_speed
 	instantiate_box()
 	
 

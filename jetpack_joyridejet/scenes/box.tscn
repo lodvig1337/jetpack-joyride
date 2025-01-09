@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://djfa02dukvlym"]
+[gd_scene load_steps=5 format=3 uid="uid://djfa02dukvlym"]
 
 [ext_resource type="Texture2D" uid="uid://bblonokiq35vf" path="res://pngs/obstacle/1_Idle.png" id="1_7lab2"]
 [ext_resource type="Script" path="res://scripts/box.gd" id="1_o86w0"]
+[ext_resource type="PackedScene" uid="uid://bhctanrktfl2o" path="res://scenes/box_explosion.tscn" id="3_ss7v3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltfsj"]
 size = Vector2(22, 22)
@@ -19,4 +20,8 @@ shape = SubResource("RectangleShape2D_ltfsj")
 texture_filter = 1
 texture = ExtResource("1_7lab2")
 
+[node name="box_explosion" parent="." instance=ExtResource("3_ss7v3")]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="finished" from="box_explosion" to="." method="_on_box_explosion_finished"]

@@ -14,13 +14,13 @@ func _ready() -> void:
 	rand_value = randi_range(1,6)
 	
 	if rand_value == 1 || rand_value == 3:
-		speed = 500
+		speed = 500 * Global.increasing_speed
 		
 	elif rand_value == 2:
-		speed = 250
+		speed = 300 * Global.increasing_speed
 		
 	else:
-		speed = 150
+		speed = 150 * Global.increasing_speed
 		
 	animated_sprite_2d.play("slime"+str(rand_value))
 
@@ -47,7 +47,7 @@ func death_animation():
 	animated_sprite_2d.play(death_animation_string)
 	animated_sprite_2d.animation_looped.connect(death_tween)
 	var tween_speed: Tween = create_tween()
-	tween_speed.tween_property(self, "speed", 250, 0.75)
+	tween_speed.tween_property(self, "speed", 300 * Global.increasing_speed , 0.75)
 	
 func death_tween():
 	animated_sprite_2d.set_frame_and_progress(9, 0)

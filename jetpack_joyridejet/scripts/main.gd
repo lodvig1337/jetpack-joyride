@@ -57,6 +57,7 @@ func _on_box_spawn_timer_timeout() -> void:
 
 
 func _on_score_timer_timeout() -> void:
+	Global.increasing_speed += 0.005
 	score += 10
 	$CanvasLayer/score_label.set_text(str(score))
 	

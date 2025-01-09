@@ -5,11 +5,15 @@ const JUMP_VELOCITY = -100
 var on_ground = false
 var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
 var dead = false
+@export var player_powerup = false
+
+func _ready() -> void:
+	Global.player_powerup = player_powerup
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta * 3
+		velocity += get_gravity() * delta * 1.5
 		
 	if Input.is_action_just_pressed("ui_accept"):
 		if get_tree().paused:
@@ -19,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_pressed("ui_accept"):
 		$AnimatedSprite2D.play("flying")
-		velocity.y += JUMP_VELOCITY
+		velocity.y += JUMP_VELOCITY * 0.6
 		
 		if $bullet_timer.is_stopped():
 			shoot_bullet("left")
